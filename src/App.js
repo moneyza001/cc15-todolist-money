@@ -1,5 +1,14 @@
+import "./App.scss";
 function App() {
-  return <div>React-App</div>;
+  return (
+    <div>
+      <div className="todo">
+        <div className="todo__header">Header</div>
+        <div className="todo__sidebar">SideBar</div>
+        <div className="todo__content">TodoContent</div>
+      </div>
+    </div>
+  );
 }
 
 export default App;
