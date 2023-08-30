@@ -1,5 +1,4 @@
 import "./App.scss";
-import { FaHome } from "react-icons/fa";
 import Header from "../components/Header.jsx";
 function App() {
   return (
