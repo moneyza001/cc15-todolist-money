@@ -8,6 +8,10 @@ import {
 import Header from "../components/Header.jsx";
 import ListItem from "../components/ListItem";
 import Lists from "../components/Lists";
+import TodoHeader from "../components/todo/TodoHeader";
+import TodoCreate from "../components/todo/TodoCreate";
+import TodoLists from "../components/todo/TodoLists";
+
 function App() {
   const generalLists = [
     { id: 1, text: "Inbox", icon: <FaInbox />, active: true },
@@ -45,7 +49,13 @@ function App() {
             </section>
           </aside>
         </div>
-        <div className="todo__content">TodoContent</div>
+        <div className="todo__content">
+          <main className="todo__container">
+            <TodoHeader />
+            <TodoCreate />
+            <TodoLists />
+          </main>
+        </div>
       </div>
     </div>
   );
