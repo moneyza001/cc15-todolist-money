@@ -1,8 +1,23 @@
 import "./App.scss";
-import {FaCalendar, FaCalendarAlt, FaHome,FaInbox} from 'react-icons/fa';
+import {
+  FaCalendar,
+  FaCalendarAlt,
+  FaInbox,
+  FaChevronDown,
+} from "react-icons/fa";
 import Header from "../components/Header.jsx";
 import ListItem from "../components/ListItem";
+import Lists from "../components/Lists";
 function App() {
+  const generalLists = [
+    { id: 1, text: "Inbox", icon: <FaInbox />, active: true },
+    { id: 2, text: "Today", icon: <FaCalendar />, active: false },
+    { id: 3, text: "Next 7 Days", icon: <FaCalendarAlt />, active: false },
+  ];
+  const projectList = [
+    { id: 4, text: "Project-A", icon: <FaInbox />, active: true },
+    { id: 5, text: "Project-B", icon: <FaInbox />, active: false },
+  ];
   return (
     <div>
       <div className="todo">
@@ -12,34 +27,22 @@ function App() {
         <div className="todo__sidebar">
           <aside className="sidebar">
             <section className="sidebar__category">
-              <ul className="list">
-                  {/* <li className="list__item">
-                      <FaInbox className="list__item__icon"/>
-                    <p className="list__item__text">Inbox</p>
-                  </li>
-                  <li className="list__item">
-                      <FaCalendar className="list__item__icon"/>
-                    <p className="list__item__text">Today</p>
-                  </li>
-                  <li className="list__item">
-                      <FaCalendarAlt className="list__item__icon"/>
-                    <p className="list__item__text">Next 7 days</p>
-                  </li> */}
-                  <ListItem 
-                  text='Inbox' 
-                  icon={<FaInbox/>}
-                  />
-                  <ListItem 
-                  text='Today' 
-                  icon={<FaCalendar/>}
-                  />
-                  <ListItem 
-                  text='Next 7 
-                  days' icon={<FaCalendarAlt/>}
-                  />
-              </ul>
+              <Lists data={generalLists} />
             </section>
-            <section className="sidebar__category">2</section>
+            <section className="sidebar__category">
+              <div className="accordion">
+                <div>
+                  <li className="accordion__item">
+                    <FaChevronDown
+                      className="accordion__item__icon
+                      accordion__item__active"
+                    />
+                    <p className="accordion__item__text">Project</p>
+                  </li>
+                </div>
+                <Lists data={projectList} />
+              </div>
+            </section>
           </aside>
         </div>
         <div className="todo__content">TodoContent</div>
