@@ -29,7 +29,7 @@ const [state,setState] = useState(innitialState : any)
 
 function TodoCreate() {
   const [isOpenForm, setIsOpenForm] = useState(false);
-  const handleClick = function (event) {
+  const handleClick = function () {
     setIsOpenForm(!isOpenForm);
   };
   return (
