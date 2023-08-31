@@ -13,24 +13,49 @@ import { useState } from "react";
   type="button"
 
 */
+/*
+props = {
+  textSubmit : string
+  setIsOpenForm : FN
+}
+*/
+/*
+
+FormValidation
+*/
 
 function TodoForm(props) {
   const [isError, setIsError] = useState(false);
-  const [isCancle, setIsCancle] = useState(false);
+  const [taksInput, setTaskInput] = useState("");
+
+  const handleChangeInput = function (event) {
+    if (isError) setIsError(false);
+    setTaskInput(event.target.value);
+  };
 
   const handleSubmit = function (event) {
     event.preventDefault();
+
+    if (taksInput.trim() === "") {
+      console.log("Error");
+      setIsError(true);
+      return;
+    }
     console.log("submit");
   };
 
   const handleCancle = function () {
-    setIsCancle(!isCancle);
-    console.log("cancle");
+    props.setIsOpenForm(false);
   };
 
   return (
     <form className={styles.todo__form__container} onSubmit={handleSubmit}>
-      <input className={styles.todo__form__input} placeholder="Task Name" />
+      <input
+        className={styles.todo__form__input}
+        onChange={handleChangeInput}
+        value={taksInput}
+        placeholder="Task Name"
+      />
       <div className={styles.todo__form__footer}>
         {isError ? (
           <p className={styles.todo__error}>Title is required</p>
