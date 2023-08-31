@@ -6,8 +6,8 @@ function TodoLists() {
     <ul>
       <li className={styles.todo}>
         <span className={styles.todo__checkbox}>{/* <FaRegCircle /> */}</span>
-        <p className={styles.todo__task}>30 AUG 2023</p>
-        <span className={styles.todo__date}></span>
+        <p className={styles.todo__task}>Todo-Task 1</p>
+        <span className={styles.todo__date}>30 AUG 2023</span>
         <div className={styles.todo__action}>
           <span className={styles.todo__edit}>
             <FaPen />
