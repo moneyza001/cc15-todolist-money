@@ -40,7 +40,6 @@ function TodoForm(props) {
       setIsError(true);
       return;
     }
-
     props.addTodo(taksInput);
     props.setIsOpenForm(false);
   };

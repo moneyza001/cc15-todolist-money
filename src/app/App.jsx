@@ -11,19 +11,19 @@ import dayjs from "dayjs";
 
 const data = [
   {
-    id: 1,
+    id: nanoid(),
     task: "Suspendisse potenti.",
     status: false,
     due_date: "2023-04-26",
   },
   {
-    id: 2,
+    id: nanoid(),
     task: "In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
     status: false,
     due_date: "2023-05-08",
   },
   {
-    id: 3,
+    id: nanoid(),
     task: "Aenean fermentum. Donec ut mauris eget massa tempor convallis.",
     status: false,
     due_date: "2023-04-30",
@@ -42,6 +42,45 @@ function App() {
     };
     setAllTodo((p) => [newTodo, ...p]);
   };
+
+  // delete
+  const deleteTodo = function (todoId) {
+    //   Practice #1
+    const newTodo = allTodos.filter((objtask) => objtask.id != todoId);
+    setAllTodo(newTodo);
+  };
+
+  const editTodo = function (todoId, newTodoObj) {
+    // console.log(todoId, newTodoObj);
+
+    // # Practice #1
+    // let foundedTodo = allTodos.find((todo) => todo.id === todoId);
+    // if (!foundedTodo) return;
+    // const newTodo = Object.assign({}, foundedTodo, newTodoObj);
+
+    // let foundedIndex = allTodos.findIndex((todo) => todo.id === todoId);
+    // if (foundedIndex === -1) return;
+
+    // const newTodoLists = [...allTodos];
+    // newTodoLists.splice(foundedIndex, 1, newTodo);
+    // setAllTodos(newTodoLists);
+
+    // #Practice #2
+    // const newTodoLists = allTodos.map(function (todo) {
+    //   if (todo.id !== todoId) return todo;
+    //   else return { ...todo, ...newTodoObj };
+    // });
+    // setAllTodos(newTodoLists);
+
+    // #Practice3
+    const newTodoLists = allTodos.reduce((acc, todo) => {
+      if (todo.id !== todoId) acc.push(todo);
+      else acc.push({ ...todo, ...newTodoObj });
+      return acc;
+    }, []);
+    setAllTodo(newTodoLists);
+  };
+
   return (
     <div className="todo">
       <div className="todo__header">
@@ -54,7 +93,11 @@ function App() {
         <main className="todo__container">
           <TodoHeader />
           <TodoCreate addTodo={addTodo} />
-          <TodoLists data={allTodos} />
+          <TodoLists
+            data={allTodos}
+            deleteTodo={deleteTodo}
+            editTodo={editTodo}
+          />
         </main>
       </div>
     </div>
