@@ -26,7 +26,7 @@ FormValidation
 
 function TodoForm(props) {
   const [isError, setIsError] = useState(false);
-  const [taksInput, setTaskInput] = useState("");
+  const [taksInput, setTaskInput] = useState(props.oldTodo?.task || "");
 
   const handleChangeInput = function (event) {
     if (isError) setIsError(false);
@@ -40,7 +40,10 @@ function TodoForm(props) {
       setIsError(true);
       return;
     }
-    props.addTodo(taksInput);
+    if (props.addTodo) props.addTodo(taksInput);
+    else if (props.editTodo && props.oldTodo) {
+      props.editTodo(props.oldTodo.id, { task: taksInput });
+    }
     props.setIsOpenForm(false);
   };
 
