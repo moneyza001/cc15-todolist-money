@@ -6,6 +6,7 @@ function TodoLists(props) {
     <ul className={styles.todo__lists}>
       {props.data.map((todoObj) => (
         <TodoItem
+          id={todoObj.id}
           key={todoObj.id}
           task={todoObj.task}
           done={todoObj.status}

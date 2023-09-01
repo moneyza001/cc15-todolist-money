@@ -1,7 +1,7 @@
 import { Button } from "../Common/Button/Button";
-import styles from "./TodoForm.module.scss";
 import { useState } from "react";
-
+import { nanoid } from "nanoid";
+import styles from "./TodoForm.module.scss";
 /*
   #1 Form Handle
 
@@ -40,20 +40,8 @@ function TodoForm(props) {
       setIsError(true);
       return;
     }
-    console.log("submit === create new Todo");
-    /*
-    create NewTodo
-    1 ส่ง Request ไปหลังบ้านเพื่อ save ลง Database
-    2 Update state for Rerender 
-    */
-    const newTodo = {
-      id: props.data.length + 1,
-      task: taksInput,
-      status: false,
-      due_date: "2023-01-09",
-    };
-    const newTodoLists = [newTodo, ...props.data];
-    props.setTodo(newTodoLists);
+
+    props.addTodo(taksInput);
     props.setIsOpenForm(false);
   };
 
