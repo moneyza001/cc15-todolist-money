@@ -35,13 +35,26 @@ function TodoForm(props) {
 
   const handleSubmit = function (event) {
     event.preventDefault();
-
     if (taksInput.trim() === "") {
       console.log("Error");
       setIsError(true);
       return;
     }
-    console.log("submit");
+    console.log("submit === create new Todo");
+    /*
+    create NewTodo
+    1 ส่ง Request ไปหลังบ้านเพื่อ save ลง Database
+    2 Update state for Rerender 
+    */
+    const newTodo = {
+      id: props.data.length + 1,
+      task: taksInput,
+      status: false,
+      due_date: "2023-01-09",
+    };
+    const newTodoLists = [newTodo, ...props.data];
+    props.setTodo(newTodoLists);
+    props.setIsOpenForm(false);
   };
 
   const handleCancle = function () {
